@@ -8,82 +8,82 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/linxi/code/Badway"/>
+				<Option working_dir="/Users/linxi/code/badway"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/linxi/code/Badway"/>
+				<Option working_dir="/Users/linxi/code/badway"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/linxi/code/Badway"/>
+				<Option working_dir="/Users/linxi/code/badway"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="badway">
-				<Option output="/Users/linxi/code/Badway/badway" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/linxi/code/badway/badway" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="clang"/>
 				<Compiler>
-					<Add directory="/Users/linxi/code/Badway/openssl"/>
-					<Add directory="/Users/linxi/code/Badway/include"/>
-					<Add directory="/Users/linxi/code/Badway/PI"/>
+					<Add directory="/Users/linxi/code/badway/openssl"/>
+					<Add directory="/Users/linxi/code/badway/include"/>
+					<Add directory="/Users/linxi/code/badway/PI"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 badway"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 badway"/>
+					<CompileFile command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="badway/fast">
-				<Option output="/Users/linxi/code/Badway/badway" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/linxi/code/badway/badway" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir=""/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="clang"/>
 				<Compiler>
-					<Add directory="/Users/linxi/code/Badway/openssl"/>
-					<Add directory="/Users/linxi/code/Badway/include"/>
-					<Add directory="/Users/linxi/code/Badway/PI"/>
+					<Add directory="/Users/linxi/code/badway/openssl"/>
+					<Add directory="/Users/linxi/code/badway/include"/>
+					<Add directory="/Users/linxi/code/badway/PI"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 badway/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/linxi/code/Badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 badway/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -f &quot;/Users/linxi/code/badway/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/linxi/code/Badway/src/main.cpp">
+		<Unit filename="/Users/linxi/code/badway/src/main.cpp">
 			<Option target="badway"/>
 		</Unit>
-		<Unit filename="/Users/linxi/code/Badway/src/mylib.cpp">
+		<Unit filename="/Users/linxi/code/badway/src/mylib.cpp">
 			<Option target="badway"/>
 		</Unit>
-		<Unit filename="/Users/linxi/code/Badway/src/sha256.c">
+		<Unit filename="/Users/linxi/code/badway/src/sha256.c">
 			<Option target="badway"/>
 		</Unit>
-		<Unit filename="/Users/linxi/code/Badway/CMakeLists.txt">
+		<Unit filename="/Users/linxi/code/badway/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
