@@ -6,4 +6,14 @@
 #include "typos.h"
 #include <stdio.h>
 
+#ifndef _WIN32
+#include <unistd.h>
+/*
+ * chdir
+ */
+
+#else
+
+#endif /* _WIN32*/
+
 #endif // !main_h

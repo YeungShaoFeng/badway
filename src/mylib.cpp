@@ -11,15 +11,15 @@ char _rb[] = "rb";
 char _wb[] = "wb";
 
 #ifndef _WIN32
-
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/types.h>
-
 timeval tv = {0, 0};
 long long L1 = 0, L2 = 0;
+
 #else
+
 #include <io.h>
 #include <direct.h>
 #include <Windows.h>
@@ -84,11 +84,11 @@ Pi *getPiWithPosFromPI64(int pos, Pi *aPi) {
         currentCount = 0;
     }
     for (int i = 0; i < BYTO_LENGTH; i++) {
-        aPi->_byto[i] = PI64[pos][i];
+        aPi->_byto[i] = PI64[currentCount][i];
     }
     return aPi;
 }
-
+// f58f576eff38d9353ecc3475f7b0253d735f04968a75ef5ea03ba45c25619069
 char *sha256(char *str, char *output) {
     char buf[3];
     unsigned char hash[SHA256_DIGEST_LENGTH];
@@ -283,32 +283,19 @@ void step_printTarget(const char *targetPropertyName, char *targetProperty) {
     }
 }
 
-bool checkDirOrFileOut(const char *fileNameOrDirPath) {
-    bool status = false;
-#ifndef _WIN32
-    int accessed = access(fileNameOrDirPath, 0); //有指定访问权限则返回0，否则函数返回-1
-#else
-    int accessed = _access(fileNameOrDirPath, 0);
-#endif
-    if (accessed == -1) {
-        status = false;
-    } else if (accessed == 0) {
-        status = true;
-    }
-    return status;
-}
-
 bool checkTargetProperties(Target *target) {
     bool a = true, b = true, c = true;
+    { cout << "1" << endl; }
     if (!target->willDecryp && !target->willEncryp) {
         a = false;
         printf("You missed the -e or -d option. \n");
     }
-
+    { cout << "2" << endl; }
     if (target->inputFileName == nullptr) {
         b = false;
         printf("Did you forget to specify a input file name? \n");
     } else {
+        { cout << "3" << endl; }
         if (!checkDirOrFileOut(target->inputFileName)) {
             b = false;
             printf("The input file name you specified was invalid. \n");
@@ -391,6 +378,7 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
 #endif
 
     while (true) {
+        // logger
         if (target->logLevel < 3) {
             printf("calTargetWithPi cnt: {%d}. \n", int(cnt));
             printf("global currentCount: {%d}. \n", currentCount);
@@ -398,9 +386,11 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
                 printf("calTargetWithPi indexOfPi: {%s}. \n", indexOfPi);
             }
         }
+        // core code
         for (int i = 0; i < BYTO_LENGTH; i++) {
             cnt = getChars(buff, BYTO_LENGTH, afp);
             if (cnt == 0) {
+                // end of the input file
                 isFinished = true;
                 break;
             }
@@ -412,7 +402,9 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
                 putPi(&aPi, bfp);
             }
         }
+        // determine if is finished
         if (!isFinished) {
+            // not finished
             sha256(buff_b, indexOfPi);
 #ifndef _WIN32
             strcpy(buff_b, indexOfPi);
@@ -420,8 +412,10 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
             strcpy_s(buff_b, BYTO_LENGTH + 1, indexOfPi);
 #endif
         } else {
+            // finished. Get out of the while loop
             break;
         }
+
     }
 }
 
@@ -465,7 +459,22 @@ void myTimer() {
 #endif
 }
 
-void makeDir(const char *dirPath) {
+bool checkDirOrFileOut(const char *fileNameOrDirPath) {
+    bool status = false;
+#ifndef _WIN32
+    int accessed = access(fileNameOrDirPath, 0); //有指定访问权限则返回0，否则函数返回-1
+#else
+    int accessed = _access(fileNameOrDirPath, 0);
+#endif
+    if (accessed == -1) {
+        status = false;
+    } else if (accessed == 0) {
+        status = true;
+    }
+    return status;
+}
+
+int makeDir(const char *dirPath) {
     if (!checkDirOrFileOut(dirPath)) {
         printf("missing {%s}, now making... \n", dirPath);
 #ifndef _WIN32
@@ -475,6 +484,7 @@ void makeDir(const char *dirPath) {
 #endif
         if (status == 0) {
             printf("Successfully made directory: {%s}. \n", dirPath);
+            return status;
         } else {
             printf("Failed to make directory: {%s}. \n", dirPath);
             printf("Maybe you should check it out. \n");
@@ -484,4 +494,54 @@ void makeDir(const char *dirPath) {
     } else {
         printf("Directory {%s} already exits. \n", dirPath);
     }
+}
+
+int dirMaker(const char *path) {
+    // get the length of the path
+    int pathLengthCnt = strlen(path);
+    { cout << path << endl; }
+
+    // path contains at least half the length of the path
+    char *dirsNeededToBeMade = new char[pathLengthCnt + 9];
+    memset_s(dirsNeededToBeMade, pathLengthCnt, 0, pathLengthCnt);
+
+    char tmp = 0;
+    int last_slash = 0;
+
+    // Find the last slash which followed by the encrypt file name.
+    for (int i = 0; i < pathLengthCnt; i++) {
+        if(path[i] == 47) {
+            last_slash = i;
+        }
+    }
+    last_slash += 1;
+
+    // dirsNeededToBeMade[0-5] = "mkdir "
+    dirsNeededToBeMade[0] = 109; // "m"
+    dirsNeededToBeMade[1] = 107; // "k"
+    dirsNeededToBeMade[2] = 100; // "d"
+    dirsNeededToBeMade[3] = 105; // "i"
+    dirsNeededToBeMade[4] = 114; // "r"
+    dirsNeededToBeMade[5] = 32;  // " "
+
+#ifndef _WIN32
+    // "mkdir -p " + path
+    dirsNeededToBeMade[6] = 45;  // "-"
+    dirsNeededToBeMade[7] = 112; // "p"
+    dirsNeededToBeMade[8] = 32;  // " "
+    for (int i = 0; i < last_slash; i++) {
+        dirsNeededToBeMade[i+9] = path[i];
+    }
+#else
+    // "mkdir " + path
+    for (int i = 0; i < last_slash; i++) {
+        dirsNeededToBeMade[i+6] = path[i];
+    }
+#endif
+    // execute the mkdir command.
+    { cout << dirsNeededToBeMade << endl; }
+    int status = system(dirsNeededToBeMade);
+
+    releasePtr(dirsNeededToBeMade);
+    return status;
 }

@@ -109,7 +109,9 @@ void releasePtr(char *ptr);
 
 void myTimer();
 
-void makeDir(const char *dirPath);
+int makeDir(const char *dirPath);
+
+int dirMaker(const char *path);
 
 
 #endif  //mylib_h

@@ -2,6 +2,26 @@ cmake_minimum_required(VERSION 2.4)
 
 project(badway)
 
+
+# detecting the current operating system
+MESSAGE(STATUS "operation system is ${CMAKE_SYSTEM}")
+
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    MESSAGE(STATUS "current platform: Linux ")
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    MESSAGE(STATUS "current platform: Windows")
+    # Fix the libgcc_s_dw2-1.dll issue
+    set(CMAKE_EXE_LINKER_FLAGS -static)
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    MESSAGE(STATUS "current platform: FreeBSD")
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    MESSAGE(STATUS "current platform: Darwin")
+ELSE ()
+    MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
+ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+
+MESSAGE(STATUS "###################################")
+
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(
@@ -9,28 +29,6 @@ add_executable(
         src/main.cpp
         src/sha256.c
         src/mylib.cpp
-#        include/main.h
-#        include/mylib.h
-#        include/nums.h
-#        include/PI64.h
-#        include/sha256.h
-#        include/typos.h
-#        openssl/configuration.h
-#        openssl/core.h
-#        openssl/core_numbers.h
-#        openssl/crypto.h
-#        openssl/cryptoerr.h
-#        openssl/e_os2.h
-#        openssl/ebcdic.h
-#        openssl/macros.h
-#        openssl/md32_common.h
-#        openssl/opensslconf.h
-#        openssl/opensslv.h
-#        openssl/safestack.h
-#        openssl/sha.h
-#        openssl/stack.h
-#        openssl/symhacks.h
-#        openssl/types.h
 )
 
 include_directories(

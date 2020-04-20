@@ -1,4 +1,14 @@
 #include "main.h"
+//#include <sys/_types/_errno_t.h>
+//
+//int main() {
+//    char myPath[] = "./zero/one/two/three/four/five/six/seven/eight/nine/ten";
+//    dirMaker(myPath);
+//
+//    return 0;
+//}
+
+
 
 //<-----------------------func implementations-------------->
 int main(int argc, char *argv[]) {
@@ -12,11 +22,11 @@ int main(int argc, char *argv[]) {
     myTimer();
     // target properties
     int xorOptions = 0;
-
+    { cout << "0" << endl; }
     setTargetOptions(&myTarget, argc, argv, &xorOptions);
 
     if (checkTargetProperties(&myTarget)) {
-        makeDir("./tmp");
+        dirMaker(myTarget.outputFileName);
 
         if (myTarget.logLevel < 4) {
             printTarget(&myTarget);
