@@ -285,17 +285,16 @@ void step_printTarget(const char *targetPropertyName, char *targetProperty) {
 
 bool checkTargetProperties(Target *target) {
     bool a = true, b = true, c = true;
-    { cout << "1" << endl; }
+
     if (!target->willDecryp && !target->willEncryp) {
         a = false;
         printf("You missed the -e or -d option. \n");
     }
-    { cout << "2" << endl; }
+
     if (target->inputFileName == nullptr) {
         b = false;
         printf("Did you forget to specify a input file name? \n");
     } else {
-        { cout << "3" << endl; }
         if (!checkDirOrFileOut(target->inputFileName)) {
             b = false;
             printf("The input file name you specified was invalid. \n");

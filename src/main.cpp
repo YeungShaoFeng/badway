@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
     myTimer();
     // target properties
     int xorOptions = 0;
-    { cout << "0" << endl; }
     setTargetOptions(&myTarget, argc, argv, &xorOptions);
 
     if (checkTargetProperties(&myTarget)) {
