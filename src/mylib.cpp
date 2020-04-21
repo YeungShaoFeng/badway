@@ -503,9 +503,11 @@ int dirMaker(const char *path) {
 
     // path contains at least half the length of the path
     char *dirsNeededToBeMade = new char[pathLengthCnt + 9];
-    memset_s(dirsNeededToBeMade, pathLengthCnt, 0, pathLengthCnt);
+//    memset_s(dirsNeededToBeMade, pathLengthCnt, 0, pathLengthCnt);
+    for ( int i = 0; i < pathLengthCnt+9; i++) {
+        dirsNeededToBeMade[i] = 0;
+    }
 
-    char tmp = 0;
     int last_slash = 0;
 
     // Find the last slash which followed by the encrypt file name.
