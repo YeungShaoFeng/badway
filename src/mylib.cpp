@@ -7,14 +7,16 @@
 
 //<-----variable definition----->
 int currentCount = 0;
-char _rb[] = "rb";
-char _wb[] = "wb";
+char RB_[] = "rb";
+char WB_[] = "wb";
 
 #ifndef _WIN32
+
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/types.h>
+
 timeval tv = {0, 0};
 long long L1 = 0, L2 = 0;
 
@@ -28,8 +30,8 @@ bool nStart = true, nEnd = false;
 #endif
 
 // get BUFF_LENGTH's char from fp
-size_t getChars(char *buff, int BUFF_LENGTH, FILE *fp) {
-    size_t a = fread(buff, sizeof(char), BUFF_LENGTH, fp);
+size_t getChars(unsigned char *buff, int BUFF_LENGTH, FILE *fp) {
+    size_t a = fread(buff, sizeof(unsigned char), BUFF_LENGTH, fp);
     buff[BYTO_LENGTH] = 0;
     return a;
 }
@@ -64,14 +66,14 @@ size_t putPi(Pi *aPi, FILE *fp) {
 size_t putPiWithLength(Pi *aPi, int length, FILE *fp) {
     size_t a = 0;
     for (int i = 0; i < length; i++) {
-        a += fwrite(&aPi->_byto[i], sizeof(char), one, fp);
+        a += fwrite(&aPi->_byto[i], sizeof(unsigned char), one, fp);
     }
 
     return a;
 }
 
-Pi *calPiWithCharAndSha256(Pi *aPi, const char *buff, char *sha256) {
-    for (int i = 0; i < BYTO_LENGTH; i++) {
+Pi *calPiWithCharAndSha256(Pi *aPi, const unsigned char *buff, const unsigned char *sha256) {
+    for (unsigned char i = 0; i < BYTO_LENGTH; i++) {
         aPi->_byto[i] = aPi->_byto[i] ^ buff[i] ^ sha256[i];
     }
     return aPi;
@@ -88,13 +90,14 @@ Pi *getPiWithPosFromPI64(int pos, Pi *aPi) {
     }
     return aPi;
 }
+
 // f58f576eff38d9353ecc3475f7b0253d735f04968a75ef5ea03ba45c25619069
-char *sha256(char *str, char *output) {
+unsigned char *sha256(unsigned char *str, unsigned char *output) {
     char buf[3];
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
-    SHA256_Update(&sha256, str, strlen(str));
+    SHA256_Update(&sha256, str, strlen(reinterpret_cast<const char *>(str)));
     SHA256_Final(hash, &sha256);
     for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
 #ifndef _WIN32
@@ -110,7 +113,7 @@ char *sha256(char *str, char *output) {
     return output;
 }
 
-bool isBeginWithDashAnd(char *buff, int x) {
+bool isBeginWithDashAnd(char *buff, char x) {
     if (strlen(buff) != 2) {
         return false;
     }
@@ -120,8 +123,8 @@ bool isBeginWithDashAnd(char *buff, int x) {
     return buff[1] == x;
 }
 
-int *setTargetOptions(Target *target, int argc, char *argv[], int *xorOptions) {
-    int arguments[] = {
+unsigned int *setTargetOptions(Target *target, int argc, char *argv[], unsigned int *xorOptions) {
+    char arguments[] = {
             100, // d
             101, // e
             105, // i
@@ -132,52 +135,52 @@ int *setTargetOptions(Target *target, int argc, char *argv[], int *xorOptions) {
     };
 
     for (int i = 1; i < argc; i++) {
-        for (int argument : arguments) {
+        for (char argument : arguments) {
             if (isBeginWithDashAnd(argv[i], argument)) {
                 switch (int(argv[i][1])) {
                     case 100: // option d
                     {
-                        *xorOptions ^= 100;
+                        *xorOptions ^= 100u;
                         setTarget_willDecryp(true, target);
                         break;
                     }
                     case 101: // option e
                     {
-                        *xorOptions ^= 101;
+                        *xorOptions ^= 101u;
                         setTarget_willEncryp(true, target);
                         break;
                     }
                     case 105: // option i
                     {
-                        *xorOptions ^= 105;
+                        *xorOptions ^= 105u;
                         setTarget_inputFileName(argv[++i], target);
                         setTargetBytosCntAndLackOfBytes(target);
                         break;
                     }
                     case 108: // option l
                     {
-                        *xorOptions ^= 108;
+                        *xorOptions ^= 108u;
                         setTarget_logLevel(int(*argv[++i]) - 48, target);
                         break;
                     }
                     case 111: // option o
                     {
-                        *xorOptions ^= 111;
+                        *xorOptions ^= 111u;
                         setTarget_outputFileName(argv[++i], target);
                         break;
                     }
                     case 112: // option p
                     {
-                        *xorOptions ^= 112;
-                        setTarget_Password(argv[++i], target);
-                        char *buff = new char[BYTO_LENGTH + 1];
+                        *xorOptions ^= 112u;
+                        setTarget_Password((unsigned char *) argv[++i], target);
+                        auto *buff = new unsigned char[BYTO_LENGTH + 1];
                         sha256(target->Password, buff);
                         setTarget_sha256_Password(buff, target);
                         break;
                     }
                     case 116: // option t
                     {
-                        *xorOptions ^= 116;
+                        *xorOptions ^= 116u;
                         setTarget_willTest(true, target);
                         break;
                     }
@@ -224,12 +227,12 @@ Target *setTarget_outputFileName(char *outputFilename, Target *target) {
     return target;
 }
 
-Target *setTarget_Password(char *Password, Target *target) {
+Target *setTarget_Password(unsigned char *Password, Target *target) {
     target->Password = Password;
     return target;
 }
 
-Target *setTarget_sha256_Password(char *sha256_Password, Target *target) {
+Target *setTarget_sha256_Password(unsigned char *sha256_Password, Target *target) {
     target->sha256_Password = sha256_Password;
     return target;
 }
@@ -237,7 +240,7 @@ Target *setTarget_sha256_Password(char *sha256_Password, Target *target) {
 Target *setTargetBytosCntAndLackOfBytes(Target *target) {
     FILE *fp = nullptr;
 
-    fp = getFile(fp, target->inputFileName, _rb);
+    fp = getFile(fp, target->inputFileName, RB_);
     if (fp) {
         fseek(fp, 0L, SEEK_END);
         unsigned long size = ftell(fp);
@@ -282,6 +285,15 @@ void step_printTarget(const char *targetPropertyName, char *targetProperty) {
         printf("   %s: {nullptr}. \n", targetPropertyName);
     }
 }
+
+void step_printTarget(const char *targetPropertyName, unsigned char *targetProperty) {
+    if (targetProperty != nullptr) {
+        printf("   %s: {%s}. \n", targetPropertyName, targetProperty);
+    } else {
+        printf("   %s: {nullptr}. \n", targetPropertyName);
+    }
+}
+
 
 bool checkTargetProperties(Target *target) {
     bool a = true, b = true, c = true;
@@ -347,8 +359,8 @@ void out(Target *target) {
 void stage_one(Target *target) {
     FILE *afp = nullptr, *bfp = nullptr;
 
-    afp = getFile(afp, target->inputFileName, _rb);
-    bfp = getFile(bfp, target->outputFileName, _wb);
+    afp = getFile(afp, target->inputFileName, RB_);
+    bfp = getFile(bfp, target->outputFileName, WB_);
 
     stage_two(target, afp, bfp);
 
@@ -365,15 +377,21 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
     size_t cnt = 1;
     bool isFinished = false;
     Pi aPi = {0, 0};
-    char buff[BYTO_LENGTH + 1], buff_b[BYTO_LENGTH + 1];
-    char indexOfPi[BYTO_LENGTH + 1];
+    unsigned char buff[BYTO_LENGTH + 1], buff_b[BYTO_LENGTH + 1];
+    unsigned char indexOfPi[BYTO_LENGTH + 1];
+    unsigned char *sha256_Password = target->sha256_Password;
 
 #ifndef _WIN32
-    strcpy(indexOfPi, target->sha256_Password);
-    strcpy(buff_b, target->sha256_Password);
+    memcpy(indexOfPi, sha256_Password, BYTO_LENGTH + 1);
+    memcpy(buff_b, sha256_Password, BYTO_LENGTH + 1);
+//    strcpy(indexOfPi, target->sha256_Password);
+//    strcpy(buff_b, target->sha256_Password);
 #else
-    strcpy_s(indexOfPi, BYTO_LENGTH + 1, target->sha256_Password);
-    strcpy_s(buff_b, BYTO_LENGTH + 1, target->sha256_Password);
+    unsigned char c = sha256_Password[BYTO_LENGTH - 1];
+    _memccpy(indexOfPi, sha256_Password, (int)c, BYTO_LENGTH + 1);
+    _memccpy(buff_b, sha256_Password, (int)c, BYTO_LENGTH + 1);
+    //    strcpy_s(indexOfPi, BYTO_LENGTH + 1, target->sha256_Password);
+    //    strcpy_s(buff_b, BYTO_LENGTH + 1, target->sha256_Password);
 #endif
 
     while (true) {
@@ -406,9 +424,12 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
             // not finished
             sha256(buff_b, indexOfPi);
 #ifndef _WIN32
-            strcpy(buff_b, indexOfPi);
+            memcpy(buff_b, indexOfPi, BYTO_LENGTH + 1);
+//            strcpy(buff_b, indexOfPi);
 #else
-            strcpy_s(buff_b, BYTO_LENGTH + 1, indexOfPi);
+            auto c = indexOfPi[BYTO_LENGTH - 1];
+            _memccpy(buff_b, indexOfPi, (int)c, BYTO_LENGTH + 1);
+//            strcpy_s(buff_b, BYTO_LENGTH + 1, indexOfPi);
 #endif
         } else {
             // finished. Get out of the while loop
@@ -416,6 +437,10 @@ void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp) {
         }
 
     }
+}
+
+void releasePtr(unsigned char *ptr) {
+    delete[] ptr;
 }
 
 void releasePtr(char *ptr) {
@@ -503,7 +528,7 @@ int dirMaker(const char *path) {
     // path contains at least half the length of the path
     char *dirsNeededToBeMade = new char[pathLengthCnt + 9];
 //    memset_s(dirsNeededToBeMade, pathLengthCnt, 0, pathLengthCnt);
-    for ( int i = 0; i < pathLengthCnt+9; i++) {
+    for (int i = 0; i < pathLengthCnt + 9; i++) {
         dirsNeededToBeMade[i] = 0;
     }
 
@@ -511,7 +536,7 @@ int dirMaker(const char *path) {
 
     // Find the last slash which followed by the encrypt file name.
     for (int i = 0; i < pathLengthCnt; i++) {
-        if(path[i] == 47) {
+        if (path[i] == 47) {
             last_slash = i;
         }
     }
@@ -531,7 +556,7 @@ int dirMaker(const char *path) {
     dirsNeededToBeMade[7] = 112; // "p"
     dirsNeededToBeMade[8] = 32;  // " "
     for (int i = 0; i < last_slash; i++) {
-        dirsNeededToBeMade[i+9] = path[i];
+        dirsNeededToBeMade[i + 9] = path[i];
     }
 #else
     // "mkdir " + path

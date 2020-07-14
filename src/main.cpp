@@ -1,27 +1,17 @@
 #include "main.h"
-//#include <sys/_types/_errno_t.h>
-//
-//int main() {
-//    char myPath[] = "./zero/one/two/three/four/five/six/seven/eight/nine/ten";
-//    dirMaker(myPath);
-//
-//    return 0;
-//}
 
 
-
-//<-----------------------func implementations-------------->
 int main(int argc, char *argv[]) {
-    Target myTarget = {false, false,
-                       false, 4,
-                       3, nullptr,
-                       nullptr, nullptr,
-                       nullptr, 0
+    Target myTarget = {
+            false, false, false,
+            4, nullptr, nullptr,
+            0u, nullptr, nullptr,
+            0uL
     };
 
     myTimer();
     // target properties
-    int xorOptions = 0;
+    unsigned int xorOptions = 0;
     setTargetOptions(&myTarget, argc, argv, &xorOptions);
 
     if (checkTargetProperties(&myTarget)) {

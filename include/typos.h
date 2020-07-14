@@ -8,19 +8,19 @@
 #include "nums.h"
 
 typedef struct Pi {
-    char _byto[BYTO_LENGTH];
+    unsigned char _byto[BYTO_LENGTH];
 } Pi;
 
 typedef struct Target {
     bool willEncryp;
     bool willDecryp;
     bool willTest;
-    char lackOfBytes;
     int logLevel;
     char *inputFileName;
     char *outputFileName;
-    char *Password;
-    char *sha256_Password;
+    unsigned char lackOfBytes;
+    unsigned char *Password;
+    unsigned char *sha256_Password;
     unsigned long TargetFileBytosCnt;
 } Target;
 

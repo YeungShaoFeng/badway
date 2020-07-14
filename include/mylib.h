@@ -13,6 +13,7 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <string.h>
 #include "sha.h"
 #include "nums.h"
 #include "typos.h"
@@ -33,7 +34,7 @@ using namespace std;
  *      xorTargetWithPi indexOfPi
 */
 // get BUFF_LENGTH's char from fp
-size_t getChars(char *buff, int BUFF_LENGTH, FILE *fp);
+size_t getChars(unsigned char *buff, int BUFF_LENGTH, FILE *fp);
 
 // get a FILE *fp of filePath in mode mode
 FILE *getFile(FILE *fp, char *filePath, char *mode);
@@ -43,13 +44,13 @@ size_t putPi(Pi *aPi, FILE *fp);
 
 size_t putPiWithLength(Pi *aPi, int length, FILE *fp);
 
-Pi *calPiWithCharAndSha256(Pi *aPi, const char *buff, char *sha256);
+Pi *calPiWithCharAndSha256(Pi *aPi, const unsigned char *buff, const unsigned char *sha256);
 
 Pi *getPiWithPosFromPI64(int pos, Pi *aPi);
 
-char *sha256(char *str, char *output);
+unsigned char *sha256(unsigned char *str, unsigned char *output);
 
-bool isBeginWithDashAnd(char *buff, int x);
+bool isBeginWithDashAnd(char *buff, char x);
 
 /*
  * options:
@@ -60,7 +61,7 @@ bool isBeginWithDashAnd(char *buff, int x);
  * -t<test>
  * -l<log level>
 */
-int *setTargetOptions(Target *target, int argc, char *argv[], int *xorOptions);
+unsigned int *setTargetOptions(Target *target, int argc, char *argv[], unsigned int *xorOptions);
 
 // target setters
 Target *setTarget_willEncryp(bool willEncryp, Target *target);
@@ -75,15 +76,17 @@ Target *setTarget_inputFileName(char *inputFilename, Target *target);
 
 Target *setTarget_outputFileName(char *outputFilename, Target *target);
 
-Target *setTarget_Password(char *Password, Target *target);
+Target *setTarget_Password(unsigned char *Password, Target *target);
 
-Target *setTarget_sha256_Password(char *sha256_Password, Target *target);
+Target *setTarget_sha256_Password(unsigned char *sha256_Password, Target *target);
 
 Target *setTargetBytosCntAndLackOfBytes(Target *target);
 
 Target *printTarget(Target *target);
 
 void step_printTarget(const char *targetPropertyName, char *targetProperty);
+
+void step_printTarget(const char *targetPropertyName, unsigned char *targetProperty);
 
 bool checkDirOrFileOut(const char *fileNameOrDirPath);
 
@@ -104,6 +107,8 @@ void stage_one(Target *target);
 void stage_two(Target *target, FILE *afp, FILE *bfp);
 
 void xorTargetWithPi(Target *target, FILE *afp, FILE *bfp);
+
+void releasePtr(unsigned char *ptr);
 
 void releasePtr(char *ptr);
 
