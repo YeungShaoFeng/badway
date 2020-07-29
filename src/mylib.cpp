@@ -498,28 +498,6 @@ bool checkDirOrFileOut(const char *fileNameOrDirPath) {
     return status;
 }
 
-int makeDir(const char *dirPath) {
-    if (!checkDirOrFileOut(dirPath)) {
-        printf("missing {%s}, now making... \n", dirPath);
-#ifndef _WIN32
-        int status = mkdir("./tmp", 0777);
-#else
-        int status = _mkdir("./tmp");
-#endif
-        if (status == 0) {
-            printf("Successfully made directory: {%s}. \n", dirPath);
-            return status;
-        } else {
-            printf("Failed to make directory: {%s}. \n", dirPath);
-            printf("Maybe you should check it out. \n");
-            printf("Now exiting...\n");
-            exit(-1);
-        }
-    } else {
-        printf("Directory {%s} already exits. \n", dirPath);
-    }
-}
-
 int dirMaker(const char *path) {
     // get the length of the path
     int pathLengthCnt = strlen(path);

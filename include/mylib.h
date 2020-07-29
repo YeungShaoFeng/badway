@@ -13,7 +13,6 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
-#include <string.h>
 #include "sha.h"
 #include "nums.h"
 #include "typos.h"
@@ -94,8 +93,6 @@ bool checkTargetProperties(Target *target);
 
 void resetCurrentCount();
 
-void myPrintf(const char *msg);
-
 void printPounch(Target *target, const char *msg);
 
 void in(Target *target);
@@ -113,8 +110,6 @@ void releasePtr(unsigned char *ptr);
 void releasePtr(char *ptr);
 
 void myTimer();
-
-int makeDir(const char *dirPath);
 
 int dirMaker(const char *path);
 
