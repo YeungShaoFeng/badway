@@ -1,6 +1,9 @@
 # ***badway***
 - **A encryption and decryption with pi.**
 
+# **requirement**
+- **python3**
+
 # **compile**
 > **cmake . && make**
 

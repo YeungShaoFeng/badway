@@ -49,7 +49,8 @@ shasum_de_file=`$shasum_func $de_file`
 
 # repeat "string" times
 repeat () {
-    seq  -f $1 -s '' $2; echo
+    # seq  -f $1 -s '' $2; echo
+    python3 -c 'print("'$1'"*'$2')'
 }
 
 length_shasum_en_file=${#shasum_en_file}
