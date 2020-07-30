@@ -23,7 +23,10 @@ ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 MESSAGE(STATUS "###################################")
 
 set(CMAKE_CXX_STANDARD 14)
-
+# 
+#set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
+# fix "'nullptr' was not declared in this scope"
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 add_executable(
         badway
         src/main.cpp
