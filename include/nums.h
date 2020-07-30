@@ -3,7 +3,7 @@
 //
 #pragma once
 #ifndef BADWAY_NUMS_H
-#define BADWAY_NUMS_H   1
+#define BADWAY_NUMS_H
 
 #define one             1
 #define BYTO_LENGTH     64

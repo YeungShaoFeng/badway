@@ -3,7 +3,7 @@
 //
 #pragma once
 #ifndef BADWAY_TYPOS_H
-#define BADWAY_TYPOS_H      1
+#define BADWAY_TYPOS_H
 
 #include "nums.h"
 

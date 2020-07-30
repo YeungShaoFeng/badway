@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="badway" targetName="badway" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b94ce510-2197-4d0a-b55d-f222230185d6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/badway.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diff.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/PI64.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/mylib.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/mylib.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/nums.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/nums.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/typos.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/typos.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ahuDs9mwc86vosRGaCKyoRwh7N" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="badway" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="badway" TARGET_NAME="badway" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="badway" RUN_TARGET_NAME="badway">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b94ce510-2197-4d0a-b55d-f222230185d6" name="Default Changelist" comment="" />
+      <created>1587200029941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587200029941</updated>
+      <workItem from="1587200034529" duration="860000" />
+      <workItem from="1587209760289" duration="11523000" />
+      <workItem from="1587253970785" duration="15782000" />
+      <workItem from="1587287442968" duration="100000" />
+      <workItem from="1587287555216" duration="5163000" />
+      <workItem from="1587304037220" duration="1717000" />
+      <workItem from="1587344594824" duration="900000" />
+      <workItem from="1587356102520" duration="4563000" />
+      <workItem from="1587386556575" duration="1517000" />
+      <workItem from="1587389324495" duration="107000" />
+      <workItem from="1587462592568" duration="169000" />
+      <workItem from="1587476375402" duration="173000" />
+      <workItem from="1588082156310" duration="941000" />
+      <workItem from="1588398170743" duration="1737000" />
+      <workItem from="1588935985918" duration="27000" />
+      <workItem from="1594749546295" duration="4905000" />
+      <workItem from="1594764233301" duration="204000" />
+      <workItem from="1594973636273" duration="4013000" />
+      <workItem from="1595166512174" duration="26000" />
+      <workItem from="1596011936965" duration="11000" />
+      <workItem from="1596012023200" duration="957000" />
+      <workItem from="1596014635568" duration="2731000" />
+      <workItem from="1596028166875" duration="4781000" />
+      <workItem from="1596081592553" duration="66000" />
+      <workItem from="1596081680369" duration="38000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="688" y="293" key="#Notifications" timestamp="1594749751513">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="688" y="293" key="#Notifications/0.0.1600.900@0.0.1600.900" timestamp="1594749751513" />
+    <state x="329" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596081710533">
+      <screen x="0" y="23" width="1545" height="877" />
+    </state>
+    <state x="329" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1545.877/-1360.23.1360.745@0.23.1545.877" timestamp="1596081710533" />
+    <state x="517" y="250" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596014876200">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="517" y="250" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.900/-1360.0.1360.768@0.0.1600.900" timestamp="1596014876200" />
+    <state x="319" y="76" key="SettingsEditor" timestamp="1594749671355">
+      <screen x="0" y="23" width="1600" height="877" />
+    </state>
+    <state x="319" y="76" key="SettingsEditor/0.23.1600.877@0.23.1600.877" timestamp="1594749671355" />
+  </component>
+</project>

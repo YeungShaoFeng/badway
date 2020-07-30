@@ -1,5 +1,5 @@
 #ifndef _mylib_h
-#define _mylib_h        1
+#define _mylib_h
 #pragma once
 
 /*

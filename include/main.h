@@ -1,5 +1,5 @@
 #ifndef main_h
-#define main_h      1
+#define main_h
 #pragma once
 
 #include "mylib.h"
